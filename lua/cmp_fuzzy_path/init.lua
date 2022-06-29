@@ -80,10 +80,7 @@ source.complete = function(self, params, callback)
   local is_cmd = (vim.api.nvim_get_mode().mode == 'c')
   local pattern = nil
   if is_cmd then
-    if params.option.allowed_cmd_context[params.context.cursor_line:byte(1)] == nil then
-      callback()
-      return
-    elseif params.context.cursor_line:find('%s') == nil then
+    if params.context.cursor_line:find('%s') == nil then
       -- we should have a space between, e.g., `edit` and a path
       callback({ items = {}, isIncomplete = true })
       return
